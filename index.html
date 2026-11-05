@@ -7,9 +7,10 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="MellShop — магазин мягких игрушек">
   <meta property="og:description" content="Плюшевые герои игр, мемов и мультфильмов и классические мягкие зверята.">
-  <meta property="og:image" content="https://aleksandr5325.github.io/kr1-html-css-shop/images/preview.jpg">
+  <meta property="og:image" content="https://aleksandr5325.github.io/kr3-responsive-shop/images/preview.jpg">
   <title>MellShop — магазин мягких игрушек</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
   <script src="js/main.js" defer></script>
 </head>
 <body>
@@ -33,12 +34,19 @@
 
   <main id="main">
     <section class="hero">
-      <h1>MellShop — магазин мягких игрушек</h1>
+      <div class="hero__content">
+      <h1 class="hero__title">MellShop — магазин мягких игрушек</h1>
       <p>
         Плюшевые герои игр, мемов и мультфильмов, а ещё классические мягкие зверята.
         Каждую игрушку приятно обнимать — и не стыдно подарить.
       </p>
       <a class="button button--primary" href="#popular">Смотреть популярные</a>
+          </div>
+      <picture>
+        <source media="(min-width: 1200px)" srcset="images/hero-1155.jpg">
+        <source media="(min-width: 768px)" srcset="images/hero-800.jpg">
+        <img class="hero__image" src="images/hero-480.jpg" alt="Нарисованный магазин мягких игрушек" width="1155" height="500">
+      </picture>
     </section>
 
     <section class="section" id="advantages">
@@ -61,6 +69,9 @@
           <img
             class="product-card__image"
             src="images/shlepa.jpg"
+            srcset="images/shlepa-320.jpg 320w, images/shlepa-480.jpg 480w, images/shlepa.jpg 800w"
+            sizes="(min-width: 1280px) 224px, (min-width: 1024px) 316px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)"
+            loading="lazy"
             alt="Мягкая игрушка Шлёпа — каракал с большими ушами"
             width="800"
             height="800"
@@ -83,6 +94,9 @@
           <img
             class="product-card__image"
             src="images/pudge.jpg"
+            srcset="images/pudge-320.jpg 320w, images/pudge-480.jpg 480w, images/pudge.jpg 800w"
+            sizes="(min-width: 1280px) 224px, (min-width: 1024px) 316px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)"
+            loading="lazy"
             alt="Мягкая игрушка Малыш Пудж из Dota 2"
             width="800"
             height="800"
@@ -105,6 +119,9 @@
           <img
             class="product-card__image"
             src="images/shelly.jpg"
+            srcset="images/shelly-320.jpg 320w, images/shelly-480.jpg 480w, images/shelly.jpg 800w"
+            sizes="(min-width: 1280px) 224px, (min-width: 1024px) 316px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)"
+            loading="lazy"
             alt="Мягкая игрушка Шелли из Brawl Stars с фиолетовыми волосами"
             width="800"
             height="800"

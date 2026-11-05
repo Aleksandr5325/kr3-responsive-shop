@@ -7,9 +7,10 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Оформление заказа — MellShop">
   <meta property="og:description" content="Оформление заказа мягкой игрушки в магазине MellShop.">
-  <meta property="og:image" content="https://aleksandr5325.github.io/kr1-html-css-shop/images/preview.jpg">
+  <meta property="og:image" content="https://aleksandr5325.github.io/kr3-responsive-shop/images/preview.jpg">
   <title>Оформление заказа — MellShop</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <a class="button button--primary skip-link" href="#main">Перейти к содержимому</a>
@@ -44,7 +45,7 @@
       </p>
 
       <form class="order-form order-form--page" action="#" method="post">
-        <fieldset class="order-form__group">
+        <fieldset class="order-form__group order-form__group--columns">
           <legend class="order-form__legend">Контактные данные</legend>
 
           <div class="order-form__field">
@@ -74,7 +75,7 @@
             >
           </div>
 
-          <div class="order-form__field">
+          <div class="order-form__field order-form__field--wide">
             <label class="order-form__label" for="order-phone">Телефон</label>
             <input
               class="order-form__input"
