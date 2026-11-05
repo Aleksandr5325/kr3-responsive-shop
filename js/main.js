@@ -20,6 +20,7 @@ orderButtons.forEach((button) => {
     selectedProductInput.value = productName;
 
     // Открываем модальное окно.
+    successMessage.hidden = true;
     orderDialog.showModal();
   });
 });
@@ -35,40 +36,46 @@ const orderForm = document.getElementById('order-form');
 // Получаем сообщение об успешной отправке.
 const successMessage = document.getElementById('success-message');
 
-// Обрабатываем отправку формы.
-orderForm.addEventListener('submit', (event) => {
-  // Отменяем стандартную отправку формы,
-  // потому что backend пока не подключён.
-  event.preventDefault();
-
-  // Сбрасываем предыдущие признаки ошибок.
-  const formElements = Array.from(orderForm.elements);
-
-  formElements.forEach((element) => {
-    if (element.willValidate) {
-      element.removeAttribute('aria-invalid');
+// Для каждого поля создаём текст ошибки и связываем его с полем.
+const fields = Array.from(orderForm.querySelectorAll('input, select, textarea')).filter((field) => field.willValidate);
+const errors = new Map();
+fields.forEach((field) => {
+  const error = document.createElement('small');
+  error.className = 'order-form__error';
+  error.id = `${field.id}-error`;
+  error.hidden = true;
+  field.closest('.order-form__field').append(error);
+  const descriptions = field.getAttribute('aria-describedby');
+  field.setAttribute('aria-describedby', [descriptions, error.id].filter(Boolean).join(' '));
+  errors.set(field, error);
+  field.addEventListener('input', () => {
+    if (field.validity.valid) {
+      field.removeAttribute('aria-invalid');
+      error.hidden = true;
     }
   });
+});
 
-  // Проверяем встроенные HTML-ограничения формы.
-  if (!orderForm.checkValidity()) {
-    formElements.forEach((element) => {
-      if (element.willValidate && !element.checkValidity()) {
-        element.setAttribute('aria-invalid', 'true');
-      }
-    });
-
-    // Показываем стандартные сообщения браузера.
-    orderForm.reportValidity();
+orderForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // Учебный проект: сервер не подключён.
+  let firstInvalid = null;
+  fields.forEach((field) => {
+    const error = errors.get(field);
+    if (field.validity.valid) {
+      field.removeAttribute('aria-invalid');
+      error.hidden = true;
+    } else {
+      field.setAttribute('aria-invalid', 'true');
+      error.textContent = field.validationMessage;
+      error.hidden = false;
+      firstInvalid ??= field;
+    }
+  });
+  if (firstInvalid) {
+    firstInvalid.focus(); // Диктор прочитает подпись и связанное пояснение.
     return;
   }
-
-  // Показываем сообщение об успешной отправке.
-  successMessage.hidden = false;
-
-  // Очищаем форму.
-  orderForm.reset();
-
-  // Закрываем модальное окно.
   orderDialog.close();
+  successMessage.hidden = false;
+  orderForm.reset();
 });

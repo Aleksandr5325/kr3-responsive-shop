@@ -273,3 +273,46 @@ main {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+
+/* Практика №13: видимый фокус у всех элементов, включая checkbox и фильтры. */
+:focus-visible,
+.site-nav__link:focus-visible,
+.button:focus-visible,
+.order-form__input:focus-visible,
+.order-form__select:focus-visible,
+.order-form__textarea:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* На фиолетовой кнопке двойная обводка остаётся различимой. */
+.button--primary:focus-visible,
+.site-nav__link--active:focus-visible {
+  outline-color: var(--color-text);
+  box-shadow: 0 0 0 2px var(--color-white);
+}
+
+.order-form__error {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-danger);
+  font-weight: 700;
+}
+
+.order-form__error[hidden] {
+  display: none;
+}
+
+/* Пользователь может отключить анимации в настройках устройства. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .product-card {
+    transition: none;
+  }
+  .product-card:hover {
+    transform: none;
+  }
+}
