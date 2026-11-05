@@ -1,0 +1,798 @@
+/*
+  Шрифт Nunito с Google Fonts: округлые буквы подходят «мягкому» магазину.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap");
+
+/* ===============================
+   1. Переменные проекта
+   =============================== */
+
+:root {
+  /* Основные цвета проекта: тёплая жёлто-фиолетовая палитра MellShop */
+  --color-bg: #ffffff;
+  --color-page: #fffaeb;
+  --color-text: #2b2118;
+  --color-muted: #6b5a4a;
+  --color-primary: #6d3fc0;
+  --color-primary-dark: #4f2a96;
+  --color-border: #f0dca8;
+  --color-surface: #fff1c7;
+  --color-surface-accent: #ffe49a;
+  --color-danger: #c62839;
+  --color-success: #2e7d4f;
+  --color-success-bg: #eaf7ef;
+  --color-white: #ffffff;
+
+  /* Тень карточки при наведении */
+  --shadow-card: 0 8px 24px rgba(109, 63, 192, 0.18);
+
+  /* Отступы */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Скругления */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* Размеры */
+  --container-width: 1100px;
+}
+
+
+/* ===============================
+   2. Базовые стили
+   =============================== */
+
+/*
+  Универсальное правило для всех элементов.
+  border-box делает расчёт размеров более понятным:
+  width включает content, padding и border.
+*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
+}
+
+/*
+  Убираем стандартный внешний отступ браузера у body.
+  Без этого вокруг страницы может появиться белая рамка.
+*/
+body {
+  margin: 0;
+  font-family: "Nunito", Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-page);
+}
+
+/*
+  Задаём внутренние отступы для основных областей страницы.
+  Это делает содержимое визуально отделённым от краёв окна браузера.
+  Отступы шапки и подвала задаются в блоках .site-header и .site-footer.
+*/
+main {
+  padding: var(--space-lg);
+}
+
+/*
+  Подвал сайта — блок site-footer.
+  Тот же фон, что у шапки, визуально отделяет его от основного содержимого.
+*/
+.site-footer {
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+}
+
+
+/* ===============================
+   3. Общие элементы интерфейса
+   =============================== */
+
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/*
+  Шапка сайта — блок site-header.
+  Фон тянется на всю ширину окна.
+*/
+.site-header {
+  background-color: var(--color-surface);
+}
+
+/*
+  Внутренний контейнер шапки: ограничиваем ширину содержимого,
+  чтобы оно не растягивалось слишком сильно на широких экранах.
+*/
+.site-header__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-lg);
+}
+
+/*
+  Текстовый логотип.
+*/
+.site-header__logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/*
+  Основная навигация — блок site-nav.
+  Список пунктов меню выстраивается в строку через Flexbox.
+*/
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0;
+  margin: var(--space-md) 0 0;
+  list-style: none;
+}
+
+/*
+  Ссылка меню.
+*/
+.site-nav__link {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+/*
+  При наведении ссылка заливается основным цветом.
+*/
+.site-nav__link:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/*
+  Модификатор: пункт меню текущей страницы.
+*/
+.site-nav__link--active {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.breadcrumbs {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-md);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.breadcrumbs__link {
+  color: var(--color-primary);
+}
+
+/*
+  Разделитель «/» перед каждым пунктом, кроме первого:
+  перед второй и следующими ссылками и перед текущей страницей.
+*/
+.breadcrumbs__link + .breadcrumbs__link::before,
+.breadcrumbs__current::before {
+  content: "/";
+  display: inline-block;
+  margin-right: var(--space-xs);
+  color: var(--color-muted);
+}
+
+/*
+  Кнопка — самостоятельный блок button.
+  Базовый класс задаёт размеры и форму, цвет задают модификаторы.
+  Используется и для <button>, и для ссылок <a>, оформленных как кнопка.
+*/
+.button {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*
+  Модификатор: основная кнопка.
+*/
+.button--primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+/*
+  color нужен для ссылок-кнопок: иначе при наведении
+  срабатывает общее правило a:hover и текст сливается с фоном.
+*/
+.button--primary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+}
+
+/*
+  Модификатор: второстепенная кнопка.
+*/
+.button--secondary {
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+}
+
+.button--secondary:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/*
+  Отключённая кнопка: атрибут disabled или модификатор.
+*/
+.button:disabled,
+.button--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/*
+  Кнопка «Наверх» — блок to-top.
+  Внешний вид берётся из .button и .button--primary (БЭМ-микс),
+  здесь только положение: всегда в правом нижнем углу окна.
+*/
+.to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/*
+  Ссылка «Перейти к содержимому» для тех, кто управляет сайтом с клавиатуры.
+  Спрятана за верхним краем окна и выезжает, только когда получает фокус (клавиша Tab).
+*/
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-md);
+  z-index: 20;
+}
+
+.skip-link:focus {
+  top: var(--space-md);
+}
+
+/*
+  После перехода по ссылке не обводим весь main пунктиром от правила :target.
+*/
+main:target {
+  outline: none;
+}
+
+/* ===============================
+   4. Компоненты страницы
+   =============================== */
+
+/*
+  Hero-блок — первый крупный блок страницы.
+  Он визуально отделяется от остальных разделов фоном и отступами.
+*/
+.hero {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  padding: var(--space-xl) var(--space-lg);
+  background:
+    linear-gradient(rgba(255, 250, 235, 0.8), rgba(255, 250, 235, 0.8)),
+    url("../images/toy-store.jpg") center / cover;
+  border-radius: var(--radius-lg);
+}
+
+/*
+  Общий класс для разделов страницы.
+*/
+.section {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+}
+
+/*
+  Убираем лишний верхний отступ у заголовков разделов.
+*/
+.section__title {
+  margin-top: 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/*
+  Карточка товара — блок product-card.
+  Используется на главной странице и в каталоге.
+*/
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.product-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+/*
+  Модификаторы карточки: выделенная и со скидкой.
+*/
+.product-card--featured {
+  border-color: var(--color-primary);
+}
+
+.product-card--discount {
+  border-color: var(--color-danger);
+}
+
+/*
+  Элементы карточки.
+*/
+.product-card__title {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.product-card__description {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.product-card__price {
+  margin: 0;
+  font-weight: 700;
+}
+
+.product-card--discount .product-card__price {
+  color: var(--color-danger);
+}
+
+/*
+  Кнопка прижимается к нижней части карточки.
+*/
+.product-card__button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/*
+  Бейдж «Хит / Новинка / Скидка» в углу карточки.
+  position: absolute вынимает бейдж из потока и прижимает к правому верхнему углу.
+  Отсчёт идёт от карточки, потому что у неё position: relative.
+*/
+.product-card__badge {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 1;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Модификаторы бейджа: «Новинка» — зелёный, «Скидка» — красный.
+  «Хит» — вариант по умолчанию (основной цвет).
+*/
+.product-card__badge--new {
+  background-color: var(--color-success);
+}
+
+.product-card__badge--sale {
+  background-color: var(--color-danger);
+}
+
+/*
+  Фото товара на всю ширину карточки.
+*/
+.product-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Категория товара — мелкий серый текст над названием.
+*/
+.product-card__category {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/*
+  Старая (зачёркнутая) цена рядом с новой.
+*/
+.product-card__old-price {
+  margin-left: var(--space-sm);
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+/*
+  Дополнительный информационный блок.
+*/
+.aside-info {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  padding: var(--space-md);
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-surface);
+}
+
+
+/* ===============================
+   5. Форма и модальное окно
+   =============================== */
+
+/*
+  Модальное окно.
+  Элемент dialog сам умеет открываться поверх страницы.
+*/
+.order-dialog {
+  width: min(100% - 32px, 560px);
+  padding: var(--space-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+}
+
+/*
+  Затемнение фона за модальным окном.
+*/
+.order-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*
+  Заголовок модального окна.
+*/
+.order-dialog__title {
+  margin-top: 0;
+}
+
+/*
+  Форма заявки — блок order-form.
+  Поле формы: каждая группа «подпись + поле» получает нижний отступ.
+*/
+.order-form__field {
+  margin-bottom: var(--space-md);
+}
+
+/*
+  Подпись поля.
+*/
+.order-form__label {
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+/*
+  Основные поля формы.
+*/
+.order-form__input,
+.order-form__select,
+.order-form__textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+.order-form__input:hover,
+.order-form__select:hover,
+.order-form__textarea:hover {
+  border-color: var(--color-primary);
+}
+
+/*
+  Видимый фокус для клавиатурной навигации.
+*/
+.order-form__input:focus-visible,
+.order-form__select:focus-visible,
+.order-form__textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/*
+  Подсказка под полем телефона.
+*/
+.order-form__hint {
+  display: block;
+  margin-top: var(--space-xs);
+  color: var(--color-muted);
+}
+
+/*
+  Подсветка ошибочных полей.
+  Атрибут aria-invalid добавляется через JavaScript.
+*/
+.order-form__input[aria-invalid="true"],
+.order-form__select[aria-invalid="true"],
+.order-form__textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+/*
+  Кнопки формы.
+*/
+.order-form__actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+/*
+  Модификатор: форма на отдельной странице заказа.
+  Ограничиваем ширину, чтобы поля не растягивались на весь экран.
+*/
+.order-form--page {
+  max-width: 640px;
+}
+
+/*
+  Группа полей формы (fieldset) в рамке.
+*/
+.order-form__group {
+  margin: 0 0 var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/*
+  Заголовок группы полей.
+*/
+.order-form__legend {
+  padding: 0 var(--space-xs);
+  font-weight: 700;
+}
+
+/*
+  Вариант выбора: кружок и подпись в одну строку.
+*/
+.order-form__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+/*
+  Сообщение об успешной отправке.
+*/
+.success-message {
+  max-width: var(--container-width);
+  margin: var(--space-lg) auto;
+  padding: var(--space-md);
+  border-left: 4px solid var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+
+/* ===============================
+   6. Страница каталога
+   =============================== */
+
+/*
+  Раскладка каталога: фильтры слева (260px), товары справа (всё остальное место).
+  Области сетки названы через grid-template-areas.
+*/
+.catalog-layout {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas: "filters products";
+  gap: var(--space-lg);
+}
+
+/*
+  Боковая панель с фильтрами — область filters.
+*/
+.catalog-filters {
+  position: sticky;
+  top: var(--space-md);
+  align-self: start;
+  grid-area: filters;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+/*
+  Список товаров — область products.
+*/
+.catalog-products {
+  grid-area: products;
+}
+
+/*
+  Форма фильтров: группы полей идут столбиком,
+  расстояние между ними задаёт gap.
+*/
+.filters-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/*
+  Группа полей (категория, цена) в рамке.
+*/
+.filters-form__group {
+  margin: 0;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+/*
+  Заголовок группы полей.
+*/
+.filters-form__legend {
+  font-weight: 700;
+}
+
+/*
+  Каждая подпись с новой строки.
+*/
+.filters-form__label {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+/*
+  Числовые поля цены — в едином стиле с полями формы заявки.
+*/
+.filters-form__input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+
+/* ===============================
+   7. Страница товара
+   =============================== */
+
+/*
+  Блок товара: картинка слева, информация справа.
+  Две равные колонки через CSS Grid.
+*/
+.product {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+/*
+  Картинка занимает всю ширину своей колонки,
+  высота подстраивается автоматически.
+*/
+.product__image {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/*
+  Информация о товаре идёт столбиком через Flexbox.
+*/
+.product__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.product__title {
+  margin: 0;
+}
+
+.product__description {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.product__price {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/*
+  Таблица характеристик товара.
+*/
+.product-table {
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+}
+
+.product-table caption {
+  margin-bottom: var(--space-sm);
+  color: var(--color-muted);
+  text-align: left;
+}
+
+.product-table th,
+.product-table td {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.product-table th {
+  background-color: var(--color-surface-accent);
+}
+
+/*
+  «Зебра»: каждая вторая строка с фоном, чтобы строки было легче читать.
+*/
+.product-table tbody tr:nth-child(even) {
+  background-color: var(--color-surface);
+}
