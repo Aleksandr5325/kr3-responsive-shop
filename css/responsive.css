@@ -1,0 +1,275 @@
+/*
+  КР №3. Mobile First: базовые правила для телефона,
+  затем расширение раскладки через min-width.
+  Файл подключается после style.css.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Не скрываем переполнение body: устраняем его причину в блоках. */
+main {
+  padding: 16px;
+}
+
+.site-header__inner {
+  padding: 16px;
+}
+
+.site-header,
+.catalog-filters {
+  position: static;
+}
+
+.site-nav__list {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.site-nav__link {
+  display: block;
+  min-height: 44px;
+  padding: 12px 16px;
+}
+
+.breadcrumbs,
+.site-footer,
+.product-card,
+.product__info {
+  overflow-wrap: anywhere;
+}
+
+.section {
+  padding-block: clamp(16px, 3vw, 32px);
+}
+
+.hero {
+  display: grid;
+  gap: 24px;
+  padding: clamp(20px, 4vw, 40px);
+  /* Картинка теперь находится в picture, фон сохраняет фирменный цвет. */
+  background: var(--color-surface-accent);
+}
+
+.hero__content {
+  min-width: 0;
+}
+
+.hero__title {
+  margin-top: 0;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.15;
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.products-grid,
+.product,
+.catalog-layout {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.catalog-layout {
+  grid-template-areas: "filters" "products";
+}
+
+.product-card,
+.catalog-products,
+.product__info,
+.hero picture,
+.order-form__field,
+.order-form__group,
+.filters-form__group {
+  min-width: 0;
+}
+
+.product-card__image {
+  display: block;
+}
+
+.product__image {
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+/* Группы fieldset из КР №1 сохраняем; внутри поля адаптируются отдельно. */
+.order-form,
+.order-form__group {
+  display: grid;
+  gap: 16px;
+}
+
+.order-form__group {
+  margin: 0;
+  padding: 16px;
+}
+
+.order-form__field {
+  margin-bottom: 0;
+}
+
+.order-form__input,
+.order-form__select,
+.order-form__textarea,
+.filters-form__input,
+.button {
+  min-height: 44px;
+}
+
+.order-form__input,
+.order-form__select,
+.order-form__textarea,
+.filters-form__input {
+  max-width: 100%;
+  font-size: 16px;
+}
+
+.order-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.order-form__actions {
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.order-form__option input {
+  flex-shrink: 0;
+}
+
+/* Прокрутка только таблицы, а не всей страницы. */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.product-table {
+  min-width: 640px;
+  max-width: none;
+}
+
+.order-dialog {
+  width: min(100% - 32px, 560px);
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  padding: 16px;
+  overflow: auto;
+}
+
+/* Нижний запас позволяет прокрутить последние поля выше fixed-кнопки. */
+.site-footer {
+  padding: 24px 16px 88px;
+}
+
+.to-top {
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+}
+
+.skip-link {
+  z-index: 110;
+}
+
+@media (min-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 24px;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .site-nav__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Запас под шапку для переходов по якорям. */
+  [id] {
+    scroll-margin-top: 220px;
+  }
+
+  .order-form__group--columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .order-form__field--wide {
+    grid-column: 1 / -1;
+  }
+
+  .order-form__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .to-top {
+    right: 32px;
+    bottom: 32px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero,
+  .product {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .catalog-layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-areas: "filters products";
+    gap: 24px;
+  }
+
+  .catalog-filters {
+    position: sticky;
+    top: 210px;
+  }
+
+  /* Справа от фильтров места меньше: две удобные карточки в ряд. */
+  .catalog-products .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .products-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .catalog-products .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
