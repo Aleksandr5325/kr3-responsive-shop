@@ -11,6 +11,7 @@
   <title>Каталог товаров — MellShop</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/ui.js" defer></script>
 </head>
 <body>
   <a class="button button--primary skip-link" href="#main">Перейти к содержимому</a>
@@ -18,6 +19,8 @@
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">MellShop</a>
 
+      <details class="mobile-menu" open>
+        <summary class="mobile-menu__toggle">Меню</summary>
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
@@ -28,6 +31,7 @@
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
         </ul>
       </nav>
+      </details>
     </div>
   </header>
 
@@ -47,7 +51,8 @@
 
     <section class="catalog-layout">
       <aside class="catalog-filters">
-        <h2>Фильтры</h2>
+        <details class="filter-panel" open>
+          <summary class="filter-panel__toggle">Фильтры по категории и цене</summary>
 
         <form class="filters-form" action="#" method="get">
           <fieldset class="filters-form__group">
@@ -86,6 +91,7 @@
 
           <button class="button button--primary" type="submit">Применить</button>
         </form>
+        </details>
       </aside>
 
       <section class="catalog-products">
@@ -94,7 +100,9 @@
         <div class="products-grid">
           <article class="product-card product-card--featured">
             <span class="product-card__badge">Хит</span>
-            <img
+            <picture>
+              <source type="image/webp" srcset="images/bengal-cat-320.webp 320w, images/bengal-cat-480.webp 480w, images/bengal-cat.webp 800w" sizes="(min-width: 1280px) 230px, (min-width: 1024px) 320px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)">
+<img
               class="product-card__image"
               src="images/bengal-cat.jpg"
             srcset="images/bengal-cat-320.jpg 320w, images/bengal-cat-480.jpg 480w, images/bengal-cat.jpg 800w"
@@ -104,6 +112,7 @@
               width="800"
               height="800"
             >
+            </picture>
             <p class="product-card__category">Животные</p>
             <h3 class="product-card__title">Бенгальский кот</h3>
             <p class="product-card__description">Реалистичный пятнистый окрас и устойчивое основание — кот красиво сидит на полке.</p>
@@ -113,7 +122,9 @@
 
           <article class="product-card">
             <span class="product-card__badge">Хит</span>
-            <img
+            <picture>
+              <source type="image/webp" srcset="images/shlepa-320.webp 320w, images/shlepa-480.webp 480w, images/shlepa.webp 800w" sizes="(min-width: 1280px) 230px, (min-width: 1024px) 320px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)">
+<img
               class="product-card__image"
               src="images/shlepa.jpg"
             srcset="images/shlepa-320.jpg 320w, images/shlepa-480.jpg 480w, images/shlepa.jpg 800w"
@@ -123,6 +134,7 @@
               width="800"
               height="800"
             >
+            </picture>
             <p class="product-card__category">Мемы</p>
             <h3 class="product-card__title">Шлёпа</h3>
             <p class="product-card__description">Тот самый каракал из интернета — мягкий, круглый и очень довольный.</p>
@@ -132,7 +144,9 @@
 
           <article class="product-card">
             <span class="product-card__badge product-card__badge--new">Новинка</span>
-            <img
+            <picture>
+              <source type="image/webp" srcset="images/pudge-320.webp 320w, images/pudge-480.webp 480w, images/pudge.webp 800w" sizes="(min-width: 1280px) 230px, (min-width: 1024px) 320px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)">
+<img
               class="product-card__image"
               src="images/pudge.jpg"
             srcset="images/pudge-320.jpg 320w, images/pudge-480.jpg 480w, images/pudge.jpg 800w"
@@ -142,6 +156,7 @@
               width="800"
               height="800"
             >
+            </picture>
             <p class="product-card__category">Игровые персонажи</p>
             <h3 class="product-card__title">Малыш Пудж</h3>
             <p class="product-card__description">Плюшевая версия героя Dota 2 — без крюка, зато очень обнимательная.</p>
@@ -151,7 +166,9 @@
 
           <article class="product-card product-card--discount">
             <span class="product-card__badge product-card__badge--sale">Скидка</span>
-            <img
+            <picture>
+              <source type="image/webp" srcset="images/shelly-320.webp 320w, images/shelly-480.webp 480w, images/shelly.webp 800w" sizes="(min-width: 1280px) 230px, (min-width: 1024px) 320px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)">
+<img
               class="product-card__image"
               src="images/shelly.jpg"
             srcset="images/shelly-320.jpg 320w, images/shelly-480.jpg 480w, images/shelly.jpg 800w"
@@ -161,6 +178,7 @@
               width="800"
               height="800"
             >
+            </picture>
             <p class="product-card__category">Игровые персонажи</p>
             <h3 class="product-card__title">Шелли</h3>
             <p class="product-card__description">Боец из Brawl Stars с фиолетовыми волосами и плюшевым дробовиком.</p>
@@ -172,7 +190,9 @@
           </article>
 
           <article class="product-card">
-            <img
+            <picture>
+              <source type="image/webp" srcset="images/bunny-320.webp 320w, images/bunny-480.webp 480w, images/bunny.webp 800w" sizes="(min-width: 1280px) 230px, (min-width: 1024px) 320px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)">
+<img
               class="product-card__image"
               src="images/bunny.jpg"
             srcset="images/bunny-320.jpg 320w, images/bunny-480.jpg 480w, images/bunny.jpg 800w"
@@ -182,6 +202,7 @@
               width="800"
               height="800"
             >
+            </picture>
             <p class="product-card__category">Животные</p>
             <h3 class="product-card__title">Зайчик</h3>
             <p class="product-card__description">Пушистый зайчик с бантом — идеальный первый друг для малыша.</p>
@@ -191,7 +212,9 @@
 
           <article class="product-card">
             <span class="product-card__badge product-card__badge--new">Новинка</span>
-            <img
+            <picture>
+              <source type="image/webp" srcset="images/raven-320.webp 320w, images/raven-480.webp 480w, images/raven.webp 800w" sizes="(min-width: 1280px) 230px, (min-width: 1024px) 320px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)">
+<img
               class="product-card__image"
               src="images/raven.jpg"
             srcset="images/raven-320.jpg 320w, images/raven-480.jpg 480w, images/raven.jpg 800w"
@@ -201,6 +224,7 @@
               width="800"
               height="800"
             >
+            </picture>
             <p class="product-card__category">Игровые персонажи</p>
             <h3 class="product-card__title">Ворона</h3>
             <p class="product-card__description">Загадочный скин Raven из Fortnite в мягком исполнении.</p>
@@ -210,7 +234,9 @@
 
           <article class="product-card product-card--discount">
             <span class="product-card__badge product-card__badge--sale">Скидка</span>
-            <img
+            <picture>
+              <source type="image/webp" srcset="images/elsa-320.webp 320w, images/elsa-480.webp 480w, images/elsa.webp 800w" sizes="(min-width: 1280px) 230px, (min-width: 1024px) 320px, (min-width: 640px) calc((100vw - 96px) / 2), calc(100vw - 66px)">
+<img
               class="product-card__image"
               src="images/elsa.jpg"
             srcset="images/elsa-320.jpg 320w, images/elsa-480.jpg 480w, images/elsa.jpg 800w"
@@ -220,6 +246,7 @@
               width="800"
               height="800"
             >
+            </picture>
             <p class="product-card__category">Мультфильмы</p>
             <h3 class="product-card__title">Эльза</h3>
             <p class="product-card__description">Снежная королева из «Холодного сердца» в платье с прозрачной накидкой.</p>

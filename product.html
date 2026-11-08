@@ -11,6 +11,7 @@
   <title>Бенгальский кот — MellShop</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/ui.js" defer></script>
 </head>
 <body>
   <a class="button button--primary skip-link" href="#main">Перейти к содержимому</a>
@@ -18,6 +19,8 @@
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">MellShop</a>
 
+      <details class="mobile-menu" open>
+        <summary class="mobile-menu__toggle">Меню</summary>
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
@@ -28,6 +31,7 @@
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
         </ul>
       </nav>
+      </details>
     </div>
   </header>
 
@@ -39,7 +43,9 @@
     </nav>
 
     <section class="product">
-      <img
+      <picture>
+              <source type="image/webp" srcset="images/bengal-cat-320.webp 320w, images/bengal-cat-480.webp 480w, images/bengal-cat.webp 800w" sizes="(min-width: 900px) 520px, calc(100vw - 32px)">
+<img
         class="product__image"
         src="images/bengal-cat.jpg"
             srcset="images/bengal-cat-320.jpg 320w, images/bengal-cat-480.jpg 480w, images/bengal-cat.jpg 800w"
@@ -48,6 +54,7 @@
         width="800"
         height="800"
       >
+            </picture>
 
       <div class="product__info">
         <h1 class="product__title">Бенгальский кот</h1>
@@ -65,7 +72,17 @@
     <section class="section">
       <h2 class="section__title">Характеристики</h2>
 
-      <div class="table-wrapper" tabindex="0" role="region" aria-label="Характеристики игрушки, таблица с прокруткой">
+<dl class="product-specs" aria-label="Характеристики игрушки">
+        <div class="product-specs__item"><dt>Категория</dt><dd>Животные</dd></div>
+        <div class="product-specs__item"><dt>Размер</dt><dd>35 см</dd></div>
+        <div class="product-specs__item"><dt>Материал</dt><dd>Плюш (100% полиэстер)</dd></div>
+        <div class="product-specs__item"><dt>Наполнитель</dt><dd>Холлофайбер</dd></div>
+        <div class="product-specs__item"><dt>Возраст</dt><dd>3+</dd></div>
+        <div class="product-specs__item"><dt>Уход</dt><dd>Ручная стирка при 30 °C</dd></div>
+        <div class="product-specs__item"><dt>Страна производства</dt><dd>Россия</dd></div>
+        <div class="product-specs__item"><dt>Наличие</dt><dd>В наличии</dd></div>
+      </dl>
+      <div class="table-wrapper product-table-desktop" tabindex="0" role="region" aria-label="Характеристики игрушки, таблица с прокруткой">
       <table class="product-table">
         <caption>Характеристики игрушки</caption>
         <thead>

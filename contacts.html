@@ -11,6 +11,7 @@
   <title>Контакты — MellShop</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/ui.js" defer></script>
 </head>
 <body>
   <a class="button button--primary skip-link" href="#main">Перейти к содержимому</a>
@@ -18,6 +19,8 @@
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">MellShop</a>
 
+      <details class="mobile-menu" open>
+        <summary class="mobile-menu__toggle">Меню</summary>
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
@@ -28,6 +31,7 @@
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
         </ul>
       </nav>
+      </details>
     </div>
   </header>
 
@@ -53,10 +57,24 @@
 
     <section class="section" id="feedback">
       <h2 class="section__title">Обратная связь</h2>
-      <p>
-        Чтобы заказать игрушку, заполните форму на странице оформления заказа.
-      </p>
-      <a class="button button--primary" href="order.html">Перейти к форме</a>
+      <p>Задайте вопрос о товаре или доставке. Это учебная форма: сообщение на сервер не отправляется.</p>
+      <form class="order-form order-form--page" id="feedback-form">
+        <div class="order-form__field">
+          <label class="order-form__label" for="feedback-name">Имя (обязательно)</label>
+          <input class="order-form__input" id="feedback-name" name="name" autocomplete="given-name" minlength="2" required>
+        </div>
+        <div class="order-form__field">
+          <label class="order-form__label" for="feedback-email">E-mail (обязательно)</label>
+          <input class="order-form__input" id="feedback-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="order-form__field">
+          <label class="order-form__label" for="feedback-message">Сообщение (обязательно)</label>
+          <textarea class="order-form__textarea" id="feedback-message" name="message" minlength="10" required></textarea>
+        </div>
+        <label class="order-form__label"><input type="checkbox" name="agreement" required> Я согласен на обработку данных</label>
+        <button class="button button--primary" type="submit">Отправить сообщение</button>
+      </form>
+      <p id="feedback-status" role="status" hidden>Проверка пройдена. В учебной версии сообщение не отправляется.</p>
     </section>
   </main>
 

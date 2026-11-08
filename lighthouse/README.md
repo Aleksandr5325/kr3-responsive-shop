@@ -1,11 +1,10 @@
-# Lighthouse Accessibility
+# Итоговые отчёты Lighthouse
 
-Сохранены реальные HTML-отчёты Google Chrome от 5 ноября 2026 года (Navigation / Mobile):
+Google Chrome, Navigation / Mobile, категория Accessibility. Проверка 8 ноября 2026 года после финальных доработок практики №14.
 
 - index-accessibility.html — главная, 100/100;
 - catalog-accessibility.html — каталог, 100/100;
-- order-accessibility.html — заявка, 100/100.
+- order-accessibility.html — заявка, 100/100;
+- contacts-accessibility.html — контакты и обратная связь, 100/100.
 
-Для просмотра открыть HTML-файл в браузере. Для повторной проверки запустить сайт локально, открыть DevTools → Lighthouse и выбрать Accessibility.
-
-Автоматический отчёт не заменяет ручную проверку Tab, Shift+Tab, Enter, Escape, видимости фокуса и модального окна.
+Все отчёты получены для http://localhost:8000. Для просмотра открыть HTML в браузере. Автоматическая оценка не заменяет проверку клавиатуры, экранного диктора и модальных состояний.
